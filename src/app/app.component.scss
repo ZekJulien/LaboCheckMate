@@ -1,0 +1,15 @@
+.Avatar{
+    margin-right: 5px;
+}
+
+
+@media screen and (max-width: 320px) {
+    #Mobile{
+        height: 75px;
+        text-align: center;
+    }
+    
+    #Mobile button{
+        height: 35px;
+    }
+}

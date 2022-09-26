@@ -1,0 +1,59 @@
+<div id="responsive" *ngIf="MemberConnected.roleID === 1 && !CreateTournament">
+    <button type="button" pButton label="Ajouter" icon="pi pi-plus-circle" (click)="CreateTournament = !CreateTournament" style="margin-left:.25em" ></button>
+</div>
+
+<div id="responsive" *ngIf="CreateTournament">
+    <button type="button" class="p-button-warning" pButton label="Annuler" icon="pi pi-minus-circle" (click)="CreateTournament = !CreateTournament" style="margin-left:.25em; margin-bottom:1em" ></button>
+    <p-card header="Nouveau tournoi">
+        
+    </p-card>
+</div>
+
+<div id="responsive">
+<p-card header="Liste des tournois">
+<p-table [value]="TournamentList">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nom</th>
+            <th>Localisation</th>
+            <th>Catégories</th>
+            <th>ELO</th>
+            <th>Status</th>
+            <th>Fin des inscriptions</th>
+            <th>Joueurs</th>
+            <th></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-TournamentList>
+        <tr>
+            <td>{{TournamentList.name}}</td>
+            <td>{{TournamentList.location}}</td>
+            <td><p-chip *ngFor="let category of TournamentList.categoryID" label="{{category | categoryID }}" styleClass="mr-2 bg-{{category | categoryColors}}"></p-chip></td>
+            <td>{{TournamentList.minELO}} - {{TournamentList.maxELO}}</td>
+            <td><p-chip label="{{TournamentList.statusID | statusID}}" styleClass="mr-2 bg-{{TournamentList.statusID | statusColors}}"></p-chip></td>
+            <td>{{TournamentList.registrationEndDate | date}}</td>
+            <td>{{TournamentList.players}} / {{TournamentList.maxNumberPlayers}}</td>   
+            <td>
+                <div *ngIf="!MemberConnected.Connect">
+                    <button type="button" pButton icon="pi pi-search-plus" style="margin-left:.25em" (click)="GetDetails(TournamentList.id)"></button>
+                </div>
+                <div *ngIf="MemberConnected.Connect">
+                    <button *ngIf="MemberConnected.roleID === 1" class="p-button-danger" type="button" pButton  icon="pi pi-times-circle" style="margin-left:.25em" (click)="DeleteTournament(TournamentList.id)"></button>
+                    <button type="button" pButton icon="pi pi-search-plus" style="margin-left:.25em" (click)="GetDetails(TournamentList.id)"></button>
+                    <button *ngIf="TournamentList.isRegistered" class="p-button-outlined p-button-danger" type="button" pButton  icon="pi pi-sign-out" style="margin-left:.25em" (click)="UnSubscribeFromTournament(TournamentList.id)"></button>
+                    <button *ngIf="TournamentList.canRegister" class="p-button-outlined p-button-success" type="button" pButton  icon="pi pi-sign-in" style="margin-left:.25em" (click)="SubscribeToTournament(TournamentList.id)"></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+</p-card>
+</div>
+
+
+
+
+
+
+<button (click)="test()">TEST</button>

@@ -1,0 +1,62 @@
+#responsive{
+    width: 60%;
+    padding-top: 1rem;
+    margin: 0 auto;
+    text-align: start;
+}
+
+#submit{
+    text-align: center;
+}
+
+#gender{
+    min-width: 300px;
+}
+
+#InvalidState{
+    margin-top: -25px;
+    margin-left: 48px;
+    color: #FB7D7D ;
+    height: 50px;
+    background-color: #040d19;
+    border : 2px #FB7D7D solid;
+    border-radius: 5px;
+    border-top: none;
+    text-align: start;
+}
+#InvalidState p {
+    padding-top: 15px;
+    padding-left: 10px;
+}
+#InvalidState p i {
+    padding-right: 10px;
+}
+
+#InvalidStateBirthDate{
+    margin-top: -25px;
+    margin-left: 160px;
+    margin-right: 20px;
+    color: #FB7D7D ;
+    height: 50px;
+    background-color: #040d19;
+    border : 2px #FB7D7D solid;
+    border-radius: 5px;
+    border-top: none;
+    text-align: start;
+}
+#InvalidStateBirthDate p {
+    padding-top: 15px;
+    padding-left: 10px;
+}
+#InvalidStateBirthDate p i {
+    padding-right: 10px;
+}
+
+
+@media screen and (max-width: 960px) {
+    #responsive{
+        width: 100%;
+        text-align: center;
+    }
+
+}

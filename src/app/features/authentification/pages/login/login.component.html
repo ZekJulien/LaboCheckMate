@@ -1,0 +1,29 @@
+
+
+
+<div class="card" id="responsive">
+<p-card header="Connexion">
+    <form [formGroup]="fg" (ngSubmit)="submit()">
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input type="text" formControlName="Login" pInputText placeholder="Pseudo | Email">  
+        </div>
+            <p style="color: #FB7D7D;" *ngIf="hasError(fg,'Login', 'required')">Obligatoire</p>  
+        <br>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+            <input type="password" formControlName="Password" pInputText placeholder="Mot de passe">         
+        </div>
+            <p style="color: #FB7D7D;" *ngIf="hasError(fg,'Password', 'required')">Mot de passe invalide</p>  
+        <br>
+        <div>
+            <button type="submit"  [disabled]="fg.invalid" pButton label="" icon="pi pi-check" style="margin-left:.25em"></button>
+        </div>
+    </form>
+</p-card>
+</div>
+
+<button (click)="test()">test</button>
+
+
+                

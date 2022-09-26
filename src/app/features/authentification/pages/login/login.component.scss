@@ -1,0 +1,13 @@
+
+#responsive{
+ width: 60%;
+ padding-top: 1rem;
+ margin: 0 auto;
+ text-align: center;
+}
+
+@media screen and (max-width: 960px) {
+    #responsive{
+        width: 100%;
+    }
+  }

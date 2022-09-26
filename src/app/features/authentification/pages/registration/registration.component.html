@@ -1,0 +1,84 @@
+<div class="card" id="responsive">
+    <p-card header="Nouveau membre">
+        <form [formGroup]="fg" (ngSubmit)="submit()">
+            <!-- Pseudo -->
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                <input type="text"  formControlName="Pseudo" pInputText placeholder="Pseudo">  
+            </div>
+            <div id="InvalidState" *ngIf="hasError(fg,'Pseudo', 'required')">
+                <p> <i class="pi pi-exclamation-circle"></i>Obligatoire</p>
+            </div>  
+            <div id="InvalidState" *ngIf="hasError(fg,'Pseudo', 'gte')">
+                <p> <i class="pi pi-exclamation-circle"></i>Age Requis</p>
+            </div> 
+            <br>
+            <!-- Email -->
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-send"></i></span>
+                <input type="text" formControlName="Email" pInputText placeholder="Email">         
+            </div>
+                <div id="InvalidState" *ngIf="hasError(fg,'Email', 'required')">
+                    <p> <i class="pi pi-exclamation-circle"></i>Obligatoire</p>
+                </div>
+                <div id="InvalidState" *ngIf="hasError(fg,'Email', 'email')">
+                    <p> <i class="pi pi-exclamation-circle"></i>E-mail non conforme</p>
+                </div>
+            <br>
+            <!-- Password -->
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                <input class="p-mt-3" formControlName="Password" type="Password" toggleMask="true" pPassword/>       
+            </div>
+            <div id="InvalidState" *ngIf="hasError(fg,'Password', 'required')">
+                <p> <i class="pi pi-exclamation-circle"></i>Obligatoire</p>
+            </div>  
+            <br>
+            <!-- CheckPassword -->
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                <input class="p-mt-3" type="Password" formControlName="ConfirmPassword" toggleMask="true" pInputText/>   
+            </div>
+            <div id="InvalidState" *ngIf="hasError(fg,'ConfirmPassword', 'compare')">
+                <p> <i class="pi pi-exclamation-circle"></i>Votre mot de passe ne correspont pas</p>
+            </div>  
+            <br>
+            <!-- Birthdate -->
+            <div >
+                <div class="card" >
+                    <div class="flex flex-wrap  card-container">
+                        <div class="flex-3 h-4rem font-bold border-round">
+                            <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">Date de naissance</span>
+                            <p-calendar formControlName="BirthDate" [showIcon]="true" inputId="icon"></p-calendar>
+                            <span style="margin-right: 20px;"></span>
+                            </div>
+                            <div id="InvalidStateBirthDate" *ngIf="hasError(fg,'BirthDate', 'required')">
+                                <p> <i class="pi pi-exclamation-circle"></i>Obligatoire</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 h-4rem border-round">
+                            <div class="flex-2 h-4rem font-bold border-round">
+                                <div id="gender" class="p-inputgroup ">
+                                    <span class="p-inputgroup-addon"><span><i class="pi pi-question"></i></span> </span>
+                                    <p-selectButton [options]="Gender" formControlName="GenderID" optionLabel="name" optionValue="value"></p-selectButton>
+                                    <!-- <div id="InvalidState" *ngIf="hasError(fg,'GenderID', 'required')">
+                                        <p> <i class="pi pi-exclamation-circle"></i>Obligatoire</p>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="flex-2 h-4rem border-round"></div> -->
+                    </div>
+            </div>
+            </div>
+            <br>
+            
+            <div id="submit">
+                <button type="submit" [disabled]="!fg.valid" pButton label="" icon="pi pi-check" style="margin-left:.25em"></button>
+            </div>
+
+        </form>
+        
+    </p-card>
+</div>

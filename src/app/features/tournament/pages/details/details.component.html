@@ -1,0 +1,43 @@
+<div *ngIf="TournamentDetails" id="responsive">
+<p-card header="{{TournamentDetails.name }}">
+    <div id="info">
+        <p-chip id="space" icon="pi pi-compass" label="{{TournamentDetails.location}}"></p-chip>
+        <p-chip icon="pi pi-hashtag" *ngFor="let category of TournamentDetails.categoryID" label="{{category | categoryID }}" styleClass="mr-2 bg-{{category | categoryColors}}"></p-chip>
+        <p-chip id="space" styleClass="bg-purple-800" icon="pi pi-thumbs-up" label="ELO : {{TournamentDetails.minELO}} - {{TournamentDetails.maxELO}}"></p-chip>
+        <p-chip icon="pi pi-users" label="{{TournamentDetails.statusID | statusID}}" styleClass="mr-2 bg-{{TournamentDetails.statusID | statusColors}}"></p-chip>
+        <p-chip id="space" styleClass="bg-teal-800" icon=" pi pi-calendar-times" label="{{TournamentDetails.registrationEndDate | date}}"></p-chip>
+        <p-chip id="space"  icon=" pi pi-user" styleClass="" label="{{TournamentDetails.membersRegistered.length}} / {{TournamentDetails.maxNumberPlayers}}"></p-chip>
+    </div>
+</p-card>
+<div *ngIf="TournamentDetails" id="responsive">
+<p-card header="Liste des joueurs">
+        <div style="margin-bottom: 5px;" *ngIf="MemberConnected.Connect">
+            <span *ngIf="!MemberSubscribe"><button type="button" label="Inscription au tournoi" pButton icon="pi pi-user-plus" style="margin-left:.25em" (click)="SubscribeToTournament(TournamentDetails.id)"></button></span>
+            <span><button *ngIf="MemberSubscribe" type="button" label="Vous êtes déjà inscrit au tournoi" class="p-button-danger" pButton [disabled]="true"  style="margin-left:.25em"></button></span>
+            <span *ngIf="MemberSubscribe"><button type="button" class="p-button-warning" label="Se désinscrire du tournoi" pButton icon="pi pi-user-plus" style="margin-left:.25em" (click)="UnSubscribeFromTournament(TournamentDetails.id)"></button></span>
+        </div>
+        <div *ngIf="!MemberConnected.Connect">
+            <span *ngIf="!MemberConnected.Connect"><button type="button" label="Vous devez être connecté pour vous inscrire au tournoi" class="p-button-danger" [disabled]="true" pButton style="margin-left:.25em"></button></span>
+        </div>
+        <p-table *ngIf="Charge" [value]="TournamentDetails.membersRegistered">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </ng-template>
+        
+            <ng-template pTemplate="body" let-membersRegistered>
+                <tr>
+                    <td style="width: 5%;"><img src="./assets/images/echecs.svg"></td>
+                    <td>{{membersRegistered.pseudo}}</td>
+                    <td><p-chip id="space" styleClass="bg-purple-800" icon="pi pi-thumbs-up" label="ELO : {{membersRegistered.elo}}"></p-chip></td>
+                    <td style="width: 5%;"><button type="button" pButton icon="pi pi-search-plus" style="margin-left:.25em" (click)="GetDetails()"></button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+</p-card>
+</div>
+</div>
