@@ -83,76 +83,10 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  CheckPseudoAPI(control : FormControl) : Promise<any> | Observable<any>{
-    const response = new Promise((resolve, reject) =>{
-      setTimeout(() =>{
-        if (control.value === '') {
-          resolve({CheckPseudo: true})
-        }else{
-          resolve(null)
-        }
-      },500)
-    });
-    return response;
-  }
-
 
 
 }
 
 
-// export class UsernameValidator {
-//   static createValidator(pseudo: RegistrationComponent): AsyncValidatorFn {
-//     return (control: AbstractControl): Observable<ValidationErrors> => {
-//       return pseudo
-//         .checkIfUsernameExist(control.value)
-//         .pipe(
-//           map((result: boolean) =>
-//             result ? { usernameAlreadyExists: true } : null
-//           )
-//         );
-//     };
-//   }
-// }
-
-
-
-function ageRangeValidator(min: number, max: number): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-      if (control.value !== undefined && (isNaN(control.value) || control.value < min || control.value > max)) {
-          return { 'ageRangeValidator': true };
-      }
-      return null;
-  };
-}
-
-
-function test(pseudo : string): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: boolean } | null => {
-      if (control.value !== undefined && (isNaN(control.value) || control.value.toString() === pseudo )) {
-          return { 'test': true };
-      }
-      return null;
-  };
-}
-
-export function gte(control: AbstractControl): 
-         Observable<ValidationErrors> | null {
- 
-    const v:number=+control.value;
- 
-    console.log(v)
-    
-    if (isNaN(v)) {
-      return of({ 'gte': true, 'requiredValue': 10 })
-    }      
- 
-    if (v <= 10) {
-      return of({ 'gte': true, 'requiredValue': 10 })
-    } 
- 
-    return (null)
- 
-}
 
 
